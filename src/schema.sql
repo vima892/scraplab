@@ -2,7 +2,7 @@ CREATE DATABASE scraplab;
 USE scraplab;
 
 CREATE TABLE collection_team (
-    collection_team_id INT PRIMARY KEY NOT NULL, 
+    collection_team_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     status VARCHAR(10)
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE SLDMs (
-    SLDM_ID INT NOT NULL PRIMARY KEY, 
+    SLDM_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
     location TEXT, 
     userId INT, 
     status VARCHAR(20),
@@ -30,10 +30,10 @@ CREATE TABLE SLDMs (
 );
 
 CREATE TABLE collection_jobs(
+    collection_job_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     SLDM_ID INT NOT NULL,
-    timestamp DATETIME NOT NULL, 
+    collection_datetime DATETIME NOT NULL DEFAULT '2000-01-01 00:00:00', 
     collection_team_id INT,
-    CONSTRAINT primary_key PRIMARY KEY(SLDM_ID, timestamp),
     CONSTRAINT collection_team FOREIGN KEY (collection_team_id)
     REFERENCES collection_team(collection_team_id),
     CONSTRAINT SLDM_ID FOREIGN KEY (SLDM_ID)

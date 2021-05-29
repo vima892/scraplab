@@ -22,6 +22,10 @@ if($prepared_query = $mysqli->prepare("SELECT * FROM users WHERE username=? OR e
   if(password_verify($password, $values->password)) {
     $_SESSION["userId"] = $values->userId; 
     $_SESSION["username"] = $values->username;
+    $_SESSION["account_type"] = $values->account_type;
+    if(isset($values->collection_team_id)){
+      $_SESSION["collection_team_id"] = $values->collection_team_id;
+    }
     header("Location: dashboard.php");
   } else {
       die("Account or password not found");
