@@ -59,7 +59,12 @@
                         <p class="card-text">Birthdate: ' . $row["birthdate"] . '</p>
                         <p class="card-text">Account type: ' . $row["account_type"] . '</p>
                         <p class="card-text">Collection team ID: ' . $row["collection_team_id"] . '</p>
+                        <div class="row g-3">
                         <input type="submit" class="btn btn-danger" value="Delete account"></input>
+                        <input type="submit" class="btn btn-primary" value="Make admin"></input>
+                        <input type="submit" class="btn btn-primary" value="Add to collection team"></input>
+                        <input type="text"class="form-control mb-2 mt-2" id="staticEmail2" name="username_or_email" placeholder="Collection team ID"></input>
+                        </div>
                     </div>
                   </form>
                 </div>';
