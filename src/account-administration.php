@@ -48,7 +48,6 @@
         if($accounts_query = $mysqli->query("SELECT * FROM users WHERE userId <> '" .  $_SESSION["userId"] . "' ;")){
             while($row = $accounts_query->fetch_assoc()){
                 echo '<div class="card m-3">
-                  <form method="POST" action="delete-account.php">
                     <div class="card-body">
                         <h5 class="card-title">USER ID: <input type="text" name="userId" style="border: 0; outline: 0" value=' . $row["userId"] . ' readonly></h5>
                         <p class="card-text">Username: ' . $row["username"] . '</p>
@@ -60,13 +59,21 @@
                         <p class="card-text">Account type: ' . $row["account_type"] . '</p>
                         <p class="card-text">Collection team ID: ' . $row["collection_team_id"] . '</p>
                         <div class="row g-3">
-                        <input type="submit" class="btn btn-danger" value="Delete account"></input>
-                        <input type="submit" class="btn btn-primary" value="Make admin"></input>
-                        <input type="submit" class="btn btn-primary" value="Add to collection team"></input>
-                        <input type="text"class="form-control mb-2 mt-2" id="staticEmail2" name="username_or_email" placeholder="Collection team ID"></input>
+                        <form method="POST" action="delete-account.php">
+                          <input type="text" name="userId" style="display: none" value=' . $row["userId"] . ' readonly>
+                          <input type="submit" class="btn btn-danger" value="Delete account"></input>
+                        </form>
+                        <form method="POST" action="make-admin.php">
+                          <input type="text" name="userId" style="display: none" value=' . $row["userId"] . ' readonly>
+                          <input type="submit" class="btn btn-primary" value="Make admin"></input>
+                        </form>
+                        <form method="POST" action="add-to-collection-team.php">
+                          <input type="text" name="userId" style="display: none" value=' . $row["userId"] . ' readonly>
+                          <input type="submit" class="btn btn-primary" value="Add to collection team"></input>
+                          <input type="text"class="form-control mb-2 mt-2" id="staticEmail2" name="collection_team_id" placeholder="Collection team ID"></input>
+                        </form>
                         </div>
                     </div>
-                  </form>
                 </div>';
             }
         } else {
